@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hangar Manager</title>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="/js/bootstrap.min.js"></script>
+
+		<!-- <link rel="stylesheet" href="css/style.css" -->
+	</head>
+	<body>
+		<div class="container">
+			<div class="btn-group col-sm-6">
+				<a href="/hangar/new" class="btn btn-primary" role="button">New Hangar</a>
+				<a href="/aircraft/new" class="btn btn-primary" role="button">New Aircraft</a>
+			</div>
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th class="col-sm-2"></th>
+						<th class="col-sm-1"> ID </th>
+						<th class="col-sm-1"> Name </th>
+						<th class="col-sm-3"> Description </th>
+						<th class="col-sm-2"> Location </th>
+						<th class="col-sm-1"> Size </th>
+						<th class="col-sm-1"> Capacity </th>
+						<th class="col-sm-1"> Aircraft </th>
+					</tr>
+				</thead>
+				<tbody>
+					<% hangars.forEach(function(hangar) { %>
+						<tr>
+							<td>
+								<button type="button" class="btn btn-default btn-sm pull-left"><a href="/hangar/<%= hangar._id %>/edit">Edit</a></button>
+								<form class="form-inline" role="form" method="post" action="/hangar/<%=hangar._id%>?_method=delete"><button type="submit" class="btn btn-danger btn-sm">Delete</button></form>
+							</td>
+							<td> <%= hangar._id %> </td>
+							<td> <%= hangar.name %> </td>
+							<td> <%= hangar.description %> </td>
+							<td> <%= hangar.location %> </td>
+							<td> <%= hangar.size %> </td>
+							<td> <%= hangar.capacity %> </td>
+							<td>
+							<% hangar.aircraft.forEach(function(item) { %>
+								<a href="/aircraft/<%= item._id %>/edit"><%= item.tail %></a><br/>
+							<% }); %>
+							</td>
+						</tr>
+					<% }); %>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
