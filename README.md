@@ -1,7 +1,3 @@
-# Airware Hangar Manager App API Test Automation Framework
-
-This is a test automation framework for the Airware Hangar Manager Application. 
-
 The framework uses Mocha and Http requests 
 
 The framework uses the following tools:
